@@ -8,6 +8,4 @@ RUN npm i
 
 COPY app.js .
 
-ENTRYPOINT "node"
-
-CMD ["app.js"]
+CMD ["node", "app.js"]
