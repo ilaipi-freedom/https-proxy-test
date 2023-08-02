@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: get-npm-version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@v1.3.1
+  
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ilaipi/https-proxy-test:${{ steps.package-version.outputs.current-version}}-$(date +%s)
